@@ -1,17 +1,20 @@
 .input {
     display: flex;
-    width: 95%;
+    width: 100%;
     position: relative;
     align-items:center;
 }
 
+
 .input__box {
     width:100%;
+    overflow-wrap: break-word;
     border-radius: 50px;
     padding: 20px 30px;
     font-size: 25px;
-    border: none;
+    border: solid;
     transition: 0.2s;
+    margin: 10%;
     box-shadow: inset 0 0 5px black;
 }
 
@@ -23,20 +26,22 @@
 .input_submit {
     position: relative;
     width: 50px;
-    height: 50px;
+    height: auto;
     margin: 12px;
+    margin-top: 10%;
+    margin-bottom: 10%;
     border-radius: 10px;
     right: 0px;
     border: none;
     font-size: 15px;
-    background-color: #2f74c0;
+    background-color: #464E6B;
     color: white;
     transition: 0.2 all;
     box-shadow: 0 0 10px black;
 }
 
 .input_submit:hover {
-    background-color: #388ae2;
+    background-color: #9CA2B8;
 }
 
 .input_submit:active {
@@ -45,11 +50,18 @@
 }
 
 .container {
-    display:flex;
-    width:95%;
+    float: right;
+    display:inline-block;
+    width:60%;
     margin-top: 10px;
-    justify-content:space-between;
-    align-items:flex-start;
+    text-align:center;
+}
+.inContainer {
+    float: left;
+    display:inline-block;
+    width:40%;
+    margin-top: 10px;
+    text-align:center;
 }
 
 .todos__heading {
@@ -58,21 +70,29 @@
 }
 
 .todos {
-    display: flex;
-    width: 47%;
+    display: inline-block;
+    width: 85%;
+    margin:10px;
+    align-items:center;
+    text-align:center;
     flex-direction:column;
     padding:15px;
-    border-radius: 5px;
-    background-color: rgb(50,195,205);
+    border-radius: 15px;
+    background-color: #787366;
+    vertical-align:top;
 }
 
 
 .todos__single{
-    display: flex;
+    display:flex;
     border-radius:5px;
     padding: 20px;
+    overflow-wrap: break-word;
     margin-top:15px;
-    background-image: url("https://img.freepik.com/free-vector/scenery_1308-82403.jpg?t=st=1656281464~exp=1656282064~hmac=9f1116c9c8e5a104f67a8c41dac338a779366ec6e609c3ef21c3da665e46390a&w=740");
+    margin:10px;
+    text-align: left;
+    /*background-image: url("https://img.freepik.com/free-vector/gray-fluid-marble-texture-background_1017-37104.jpg?t=st=1656387480~exp=1656388080~hmac=7e9e497e36eb9195c7d325e30eebcbe8f720745f4c83f42cb1a1fbe57a0c25c8&w=996");*/
+    background-color: #C4BCA7;
     transition:0.2s;
 }
 .todos__single:hover{
@@ -81,6 +101,8 @@
 }
 .todos__single--text{
     flex: 1;
+    overflow-wrap: break-word;
+    width:90%;
     padding:5px;
     border:none;
     font-size:20px;
@@ -94,44 +116,49 @@
     cursor:pointer;
 }
 .remove {
-    background-color: rgb(235,103,80);
+    background-color: #787366;
 }
 .dragactive {
-    background-color: rgb(0,221,236);
+    background-color: #383630;
 }
 .dragcomplete {
-    background-color: rgb(255,38,0);
+    background-color: #383630;
 }
 
 .drag {
     box-shadow: 0 0 1000px black;
 }
 
-@media screen and (max-width: 1200px) {
+@media (max-width: 1200px) {
     .todos__single {
-        width: 40%;
+        width: 90%;
     }
 }
-@media screen and (max-width: 1100px) {
+@media (max-width: 1100px) {
     .todos {
-        width: 45%;
+        width: 90%;
     }
 }
-@media screen and (max-width: 800px) {
+@media (max-width: 800px) {
     .input {
-        width:95%;
+        width:100%;
     } 
     .container{
         display:flex;
-        padding: 0px;
-        width:auto;
+        width:100%;
         margin-top: 3px;
-        width: 95%;
+        justify-content:center;
+        align-items:center;
         flex-direction: column;
     }
+    .inContainer {
+        width: 100%;
+    }
     .todos {
-        width:100%;
-        margin: 5px;
+        justify-content:center;
+        align-items:center;
+        width:80%;
+        margin: 10px;
         padding:5px;
     }
     .todos__single {

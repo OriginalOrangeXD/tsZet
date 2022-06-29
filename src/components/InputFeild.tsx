@@ -11,6 +11,7 @@ const InputFeild: React.FC<Props> = ({todo, setTodo, handleAdd}) => {
         const inputRef = useRef<HTMLInputElement>(null);
 
         return (
+        <div className="inContainer">
         <form className='input' onSubmit={(e) => {
             handleAdd(e)
             inputRef.current?.blur();
@@ -21,9 +22,10 @@ const InputFeild: React.FC<Props> = ({todo, setTodo, handleAdd}) => {
                 onChange={
                     (e)=>setTodo(e.target.value)
                 }
-                placeholder="Enter a note" className="input__box"/>
-            <button className="input_submit" type="submit">GO</button>
+                placeholder=" " className="input__box"/>
+                <span></span>
         </form>
+        </div>
         )
 }
 

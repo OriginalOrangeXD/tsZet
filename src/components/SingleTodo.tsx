@@ -10,17 +10,25 @@ type Props = {
     todo:Todo,
     todos:Todo[],
     setTodos: React.Dispatch<React.SetStateAction<Todo[]>>,
+    completedTodos:Todo[],
+    setCompletedTodos: React.Dispatch<React.SetStateAction<Todo[]>>,
 }
 
-const SingleTodo: React.FC<Props> = ({todo, todos,setTodos, index}) => {
+const SingleTodo: React.FC<Props> = ({todo, todos,setTodos, completedTodos,setCompletedTodos, index}) => {
     const [edit, setEdit] = useState<boolean>(false);
     const [editTodo, setEditTodo] = useState<string>(todo.todo);
     
     const handleDone = (id: number) => {
-        setTodos(todos.map((todo)=> todo.id===id?{...todo,isDone:!todo.isDone}:todo));
+        setTodos(todos.filter((todo) => todo.id !== id));
+        for(var todo of todos){
+            if(id === todo.id) {
+                setCompletedTodos(completedTodos.concat(todo));
+            }
+        }
     };
     const handleDelete = (id: number) => {
         setTodos(todos.filter((todo) => todo.id !== id));
+        setCompletedTodos(todos.filter((todo) => todo.id !== id));
     };
     const handleEdit = (e:React.FormEvent,id: number) => {
         e.preventDefault();
@@ -35,15 +43,13 @@ const SingleTodo: React.FC<Props> = ({todo, todos,setTodos, index}) => {
         return (
                 <Draggable draggableId={todo.id.toString()} index={index}>
                 { (provided,snapshot) => (
-                        <form className={`todos__single ${snapshot.isDragging}?"drag":""`} onSubmit={(e)=> handleEdit(e,todo.id)} {...provided.draggableProps} {...provided.dragHandleProps}
+                        <form className={`todos__single ${snapshot.isDragging}? "drag":""`} onSubmit={(e)=> handleEdit(e,todo.id)} {...provided.draggableProps} {...provided.dragHandleProps}
                         ref={provided.innerRef}>
                         {edit ? (
                                 <input value={editTodo} ref={inRef} onChange={(e)=> setEditTodo(e.target.value)} className="todos__single--text"/>
-                                ): todo.isDone ? (
-                                    <s className="todos__single--text">{todo.todo}</s>
-                                    ):(
-                                        <span className="todos__single--text">{todo.todo}</span>
-                                      )
+                                ): (
+                                    <span className="todos__single--text">{todo.todo}</span>
+                                   )
                         }
                         <div>
                             <span className="icon" onClick={() => 

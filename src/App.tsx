@@ -51,14 +51,24 @@ function App() {
         setTodos(active);
     };
 
+    const [isModalVisable, setIsModalVisable] = useState(true);
+
+    const toggleLogin = () => {
+        setIsModalVisable(wasModalVisable => !wasModalVisable);
+    }
 
     return (
         <DragDropContext 
             onDragEnd={onDragEnd}>
         <div className="App">
-            <span className="heading">Zettle</span>
-            <InputFeild todo={todo} setTodo={setTodo} handleAdd={handleAdd}/>
-            <TodoList todos={todos} setTodos={setTodos} completedTodos={completedTodos} setCompletedTodos={setCompletedTodos}/>
+            <div className="white bar">
+            <span className="heading">Zettelkasten</span>
+            </div>
+            <span className="byName">By:Robert DeAngelis</span>
+            <div id="wrapper">
+                <InputFeild todo={todo} setTodo={setTodo} handleAdd={handleAdd}/>
+                <TodoList todos={todos} setTodos={setTodos} completedTodos={completedTodos} setCompletedTodos={setCompletedTodos}/>
+            </div>
         </div></DragDropContext>
         );
 };
