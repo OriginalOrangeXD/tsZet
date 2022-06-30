@@ -1,4 +1,6 @@
 import React, {useState} from 'react';
+import BaseModalWrapper from './modal/BaseModalWrapper'
+import RWDModal from './modal/RWDModal'
 import './App.css';
 import InputFeild from "./components/InputFeild";
 import TodoList from "./components/TodoList";
@@ -64,11 +66,13 @@ function App() {
             <div className="white bar">
             <span className="heading">Zettelkasten</span>
             </div>
+            <button onClick={toggleLogin}>Login</button>
             <span className="byName">By:Robert DeAngelis</span>
             <div id="wrapper">
                 <InputFeild todo={todo} setTodo={setTodo} handleAdd={handleAdd}/>
                 <TodoList todos={todos} setTodos={setTodos} completedTodos={completedTodos} setCompletedTodos={setCompletedTodos}/>
             </div>
+            <BaseModalWrapper header="Login" isModalVisable={isModalVisable} onBackDropClick={toggleLogin}/>
         </div></DragDropContext>
         );
 };
